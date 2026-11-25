@@ -1,0 +1,144 @@
+/* OTTO Web Design Tokens (tokens.css) */
+/* Direct drop-in for Next.js globals.css or plain web projects */
+
+:root {
+  /* Warm Canvas & Elevated Surfaces (No neon, no navy slop) */
+  --color-canvas: #F8F9FA;
+  --color-surface-elevated: #FFFFFF;
+  --color-surface-subtle: #F1F3F5;
+  --color-surface-muted: #E9ECEF;
+  --color-surface-dark: #121316;
+
+  /* Typography Colors (WCAG AAA/AA Compliant) */
+  --color-text-primary: #111827;    /* 15.3:1 contrast against #F8F9FA */
+  --color-text-secondary: #4B5563;  /* 6.9:1 contrast */
+  --color-text-muted: #6B7280;      /* 4.7:1 contrast */
+  --color-text-disabled: #9CA3AF;
+  --color-text-inverse: #FFFFFF;
+
+  /* Brand Palette Options (Grounded Industrial & Civic Standards) */
+  /* Theme 1: United Cobalt */
+  --color-brand-primary: #0016CB;
+  --color-brand-hover: #0012A3;
+  --color-brand-light: #EBF0FF;
+  --color-brand-accent: #FF5500;
+
+  /* Theme 2: Riana Ocean Slate */
+  --color-ocean-primary: #02728B;
+  --color-ocean-dark: #1D4354;
+  --color-ocean-light: #E6F4F7;
+
+  /* Theme 3: Ignite Solar Gold */
+  --color-solar-primary: #E59800;
+  --color-solar-dark: #252525;
+  --color-solar-light: #FFF8E6;
+
+  /* Semantic Feedback Tints */
+  --color-success-bg: #ECFDF5;
+  --color-success-border: #A7F3D0;
+  --color-success-text: #065F46;
+
+  --color-warning-bg: #FFFBEB;
+  --color-warning-border: #FDE68A;
+  --color-warning-text: #92400E;
+
+  --color-error-bg: #FEF2F2;
+  --color-error-border: #FECACA;
+  --color-error-text: #991B1B;
+
+  --color-info-bg: #EFF6FF;
+  --color-info-border: #BFDBFE;
+  --color-info-text: #1E40AF;
+
+  /* Whisper Thin Borders */
+  --color-border-subtle: rgba(17, 24, 39, 0.06);
+  --color-border-default: rgba(17, 24, 39, 0.12);
+  --color-border-hover: rgba(17, 24, 39, 0.24);
+
+  /* Typography Stacks */
+  --font-heading: 'Outfit', 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'Geist Mono', 'JetBrains Mono', ui-monospace, monospace;
+
+  /* Fluid Typography Scale */
+  --font-size-display: clamp(2.5rem, 5vw + 1rem, 4.25rem);
+  --font-size-h1: clamp(2rem, 3.5vw + 0.5rem, 3.25rem);
+  --font-size-h2: clamp(1.5rem, 2.5vw + 0.5rem, 2.25rem);
+  --font-size-h3: clamp(1.25rem, 1.5vw + 0.5rem, 1.625rem);
+  --font-size-h4: clamp(1.125rem, 1vw + 0.5rem, 1.25rem);
+  --font-size-body: 1rem;
+  --font-size-body-sm: 0.875rem;
+
+  /* Fluid Spatial Grid & Containers */
+  --container-max-width: 1400px;
+  --container-padding: clamp(1rem, 3.5vw, 3.5rem);
+  --section-spacing-y: clamp(3.5rem, 6vw, 7rem);
+
+  /* Radii */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* Shadows (Multi-layered ambient diffusion) */
+  --shadow-subtle: 0 1px 2px 0 rgba(17, 24, 39, 0.04);
+  --shadow-card: 0 4px 6px -1px rgba(17, 24, 39, 0.04), 0 2px 4px -2px rgba(17, 24, 39, 0.04);
+  --shadow-card-hover: 0 12px 20px -3px rgba(17, 24, 39, 0.08), 0 4px 6px -4px rgba(17, 24, 39, 0.03);
+  --shadow-modal: 0 25px 50px -12px rgba(17, 24, 39, 0.16);
+
+  /* Easing & Transition Math */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Dark Theme Overrides (Warm Graphite, Never Navy Slop) */
+[data-theme="dark"] {
+  --color-canvas: #121316;
+  --color-surface-elevated: #1A1C20;
+  --color-surface-subtle: #22252A;
+  --color-surface-muted: #2C3036;
+
+  --color-text-primary: #F9FAFB;
+  --color-text-secondary: #D1D5DB;
+  --color-text-muted: #9CA3AF;
+  --color-text-disabled: #6B7280;
+
+  --color-border-subtle: rgba(255, 255, 255, 0.08);
+  --color-border-default: rgba(255, 255, 255, 0.14);
+}
+
+/* Global Reset & Edge Case Enforcements */
+html {
+  scrollbar-gutter: stable;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+p, li, dd {
+  font-family: var(--font-body);
+  text-wrap: pretty;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+*:focus-visible {
+  outline: 2px solid var(--color-brand-primary);
+  outline-offset: 2px;
+}
