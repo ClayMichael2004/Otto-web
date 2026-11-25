@@ -2449,3 +2449,136 @@ export const metadata = {
   },
 };
 ```
+
+
+---
+
+## 10. Architectural Composition & Anti-Card-itis Page Flow Standard
+
+### 10.1 The Anti-Card-itis Manifesto
+
+The single biggest tell of AI-generated web apps after color slop is **"Card-itis" (The Bento-Box Trap)**: breaking every single concept into an endless vertical cascade of identical rounded white boxes with 1px borders and an icon in the top-left corner. Real world-class sites (United Carriers, Riana, Ignite Access) use **rhythm, whitespace, and structural contrast**.
+
+### 10.2 The 5 Layout Archetypes (Rhythm Variety)
+
+Every landing page or web application screen must cycle through at least 3 of the following 5 distinct layout archetypes:
+
+#### Archetype 1: Borderless Monumental Metric Rail
+Instead of wrapping each KPI in a box with drop shadows, anchor oversized typography directly onto a clean tonal background band with subtle vertical hairline guides.
+
+```tsx
+// src/components/sections/MonumentalMetrics.tsx
+export function MonumentalMetrics() {
+  const metrics = [
+    { value: '99.84%', label: 'Linehaul On-Time SLA', sub: 'Audited operating data across all active corridors' },
+    { value: '4.2 hrs', label: 'Border Clearance Mean', sub: 'Pre-arrival electronic manifest processing' },
+    { value: '$680M+', label: 'Protected Consignment Value', sub: 'High-value medical and industrial cargo under active custody' },
+    { value: '24 / 7', label: 'Continuous Telemetry Desk', sub: 'Direct satellite and cellular failover switching' },
+  ];
+
+  return (
+    <section className="py-16 bg-[#F1F3F5] dark:bg-[#16181D] border-y border-black/[0.06] dark:border-white/[0.08]">
+      <div className="app-container">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-black/[0.08] dark:divide-white/[0.08]">
+          {metrics.map((m, i) => (
+            <div key={i} className="py-6 md:py-0 md:px-8 first:pl-0 last:pr-0">
+              <div className="font-heading font-extrabold text-4xl lg:text-5xl text-slate-900 dark:text-white tracking-tight tabular-nums mb-2">
+                {m.value}
+              </div>
+              <div className="text-sm font-bold text-slate-800 dark:text-slate-200 mb-1">
+                {m.label}
+              </div>
+              <div className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                {m.sub}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+```
+
+#### Archetype 2: Numbered Typographic Capability Specifications (No Cards!)
+Instead of a grid of 6 rounded cards with icons, present capabilities as an expansive, editorial list with technical specifications and hairline division lines:
+
+```tsx
+// src/components/sections/EditorialCapabilities.tsx
+export function EditorialCapabilities() {
+  const capabilities = [
+    {
+      num: '01',
+      title: 'GDP Pharma Cold-Chain Logistics',
+      category: 'Regulated Life Sciences',
+      desc: 'Autonomous reefer containers with secondary lithium battery backups and dual-probe thermal telemetry for vaccines and sensitive biologics.',
+      specs: ['-25°C to +25°C validated ranges', 'Automated excursion SMS alert', 'Dedicated sterile transfer docks']
+    },
+    {
+      num: '02',
+      title: 'Scheduled Intermodal Rail & Road Linehaul',
+      category: 'Heavy Freight & Project Cargo',
+      desc: 'High-payload standard gauge rail blocks coordinated seamlessly with multi-axle low-bed road convoys for heavy industrial equipment.',
+      specs: ['120 MT axle load certified', 'Direct ship-to-rail stevedoring', 'Sovereign escort protocol']
+    },
+    {
+      num: '03',
+      title: 'Fast-Track Customs Single-Window Manifests',
+      category: 'Regulatory Clearance',
+      desc: 'Direct EDI electronic integration with national revenue authorities, enabling pre-arrival manifest registration and green-channel clearance.',
+      specs: ['Under 4-hour border release', 'In-house licensed declaration agents', 'Zero demurrage guarantee']
+    }
+  ];
+
+  return (
+    <section className="py-24 bg-white dark:bg-[#121316]">
+      <div className="app-container">
+        <div className="max-w-xl mb-16">
+          <span className="text-xs font-mono font-bold uppercase tracking-wider text-blue-700 dark:text-blue-400">Operational Standards</span>
+          <h2 className="text-3xl lg:text-4xl font-heading font-bold text-slate-900 dark:text-white tracking-tight mt-2">
+            Engineered for demanding freight with zero tolerance for failure.
+          </h2>
+        </div>
+
+        <div className="divide-y divide-black/[0.08] dark:divide-white/[0.08] border-y border-black/[0.08] dark:divide-white/[0.08]">
+          {capabilities.map((c) => (
+            <div key={c.num} className="py-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start group hover:bg-slate-50/50 dark:hover:bg-white/[0.01] transition-colors px-2">
+              <div className="lg:col-span-2 font-mono text-2xl font-bold text-slate-400 group-hover:text-blue-700 transition-colors">
+                {c.num}
+              </div>
+              <div className="lg:col-span-4">
+                <span className="text-xs font-mono uppercase text-slate-400 font-semibold block mb-1">{c.category}</span>
+                <h3 className="text-xl font-heading font-bold text-slate-900 dark:text-white">{c.title}</h3>
+              </div>
+              <div className="lg:col-span-4">
+                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">{c.desc}</p>
+                <div className="flex flex-wrap gap-2">
+                  {c.specs.map((s, i) => (
+                    <span key={i} className="text-xs px-2.5 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-mono">
+                      {s}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <div className="lg:col-span-2 flex lg:justify-end">
+                <a href="#" className="text-sm font-semibold text-blue-700 dark:text-blue-400 group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
+                  View Specs →
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+```
+
+#### Archetype 3: High-Restraint Minimalist Header
+Never cram 8 items, status pills, search bars, and multiple buttons into the header:
+- **Left**: Clean mark + company name.
+- **Center**: 4 primary navigation links.
+- **Right**: 1 subtle search trigger (`Cmd+K`) and 1 high-contrast primary CTA button.
+
+#### Archetype 4: No Graph-Paper Backgrounds
+Never apply CSS square grid lines (`background-size: 24px 24px`) behind text. Use natural architectural white space, pristine bone/stone canvas tones (`#F8F9FA`), and subtle spatial sectioning.
